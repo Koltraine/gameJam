@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1rkekhn8mha8"]
+
+[ext_resource type="Texture2D" uid="uid://dckmenkrniceg" path="res://assets/car.png" id="1_17qus"]
+[ext_resource type="Script" path="res://scenes/car.gd" id="1_xth6e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qryc"]
+size = Vector2(64, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5okol"]
+atlas = ExtResource("1_17qus")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skr52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5okol")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="car" type="CharacterBody2D"]
+rotation = -1.5708
+script = ExtResource("1_xth6e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_4qryc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_skr52")
