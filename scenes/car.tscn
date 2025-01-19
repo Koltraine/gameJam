@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1rkekhn8mha8"]
 
 [ext_resource type="Texture2D" uid="uid://dckmenkrniceg" path="res://assets/car.png" id="1_17qus"]
-[ext_resource type="Script" path="res://scenes/car.gd" id="1_xth6e"]
+[ext_resource type="Script" path="res://src/car.gd" id="1_xth6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qryc"]
 size = Vector2(64, 31)
@@ -22,12 +22,28 @@ animations = [{
 }]
 
 [node name="car" type="CharacterBody2D"]
-rotation = -1.5708
 script = ExtResource("1_xth6e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(-14, -5.06799e-05)
 shape = SubResource("RectangleShape2D_4qryc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-14, -5.06799e-05)
 sprite_frames = SubResource("SpriteFrames_skr52")
+
+[node name="Cannon" type="Line2D" parent="."]
+position = Vector2(-34, 0)
+points = PackedVector2Array(0, 0, 22, 0)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Laser" type="Line2D" parent="Cannon"]
+position = Vector2(25, -7)
+points = PackedVector2Array(-3, 7, 330, 7)
+width = 0.5
+default_color = Color(0, 1, 0, 1)
+
+[node name="Timer" type="Timer" parent="Cannon"]
+wait_time = 0.1
+one_shot = true
