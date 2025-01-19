@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 500.0
 const ACCEL = 3
+const BOOST_ACCEL = 10
 const STEER = .02
 const DRAG = 2
 
@@ -13,6 +14,7 @@ const DRAG = 2
 
 func _ready():
 	Input.set_default_cursor_shape(Input.CURSOR_CROSS)
+	timer.timeout.connect(_timer_timeout)
 
 func _physics_process(_delta: float) -> void:
 
@@ -43,7 +45,7 @@ func _physics_process(_delta: float) -> void:
 		velocity -= vel_normal * DRAG
 
 	if velocity.length() > SPEED:
-		velocity = vel_normal * SPEED
+		velocity = vel_normal * move_toward(velocity.length(), SPEED, ACCEL)
 	
 	
 	var mouse_position = get_global_mouse_position()
@@ -58,16 +60,14 @@ func _physics_process(_delta: float) -> void:
 
 		if abs(angle) < .5:
 			velocity -= forward * ACCEL
-		elif abs(angle) > PI - .5:
+		elif abs(angle) > PI - .6:
 			velocity += forward * ACCEL
 		else:
 			rotation -= STEER * angle
 
 		laser.visible = true
 		timer.start()
-		timer.timeout.connect(_timer_timeout)
-		
-	
+
 	move_and_slide()
 
 func _timer_timeout():

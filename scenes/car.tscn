@@ -35,13 +35,14 @@ sprite_frames = SubResource("SpriteFrames_skr52")
 [node name="Cannon" type="Line2D" parent="."]
 position = Vector2(-34, 0)
 points = PackedVector2Array(0, 0, 22, 0)
-width = 2.0
+width = 4.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="Laser" type="Line2D" parent="Cannon"]
+visible = false
 position = Vector2(25, -7)
-points = PackedVector2Array(-3, 7, 330, 7)
-width = 0.5
+points = PackedVector2Array(-3, 7, 621, 7)
+width = 1.0
 default_color = Color(0, 1, 0, 1)
 
 [node name="Timer" type="Timer" parent="Cannon"]
