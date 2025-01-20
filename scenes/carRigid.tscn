@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://eoujwdcu45mc"]
+
+[ext_resource type="Texture2D" uid="uid://dckmenkrniceg" path="res://assets/car.png" id="1_i7qqw"]
+[ext_resource type="Script" path="res://src/car_rigid.gd" id="1_sc2bi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7pwt"]
+size = Vector2(64, 31)
+
+[node name="CarRigid" type="RigidBody2D"]
+center_of_mass_mode = 1
+center_of_mass = Vector2(1, 0)
+script = ExtResource("1_sc2bi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q7pwt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i7qqw")
+
+[node name="Cannon" type="Line2D" parent="."]
+position = Vector2(-21, -5.96046e-08)
+scale = Vector2(1.85393, -1)
+points = PackedVector2Array(0, 0, 12.9455, 0)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Laser" type="Line2D" parent="Cannon"]
+position = Vector2(25, -7)
+points = PackedVector2Array(-12.0545, 7, 621, 7)
+width = 1.0
+default_color = Color(0, 1, 0, 1)
+
+[node name="Timer" type="Timer" parent="Cannon"]
+wait_time = 0.1
+one_shot = true

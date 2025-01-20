@@ -23,6 +23,10 @@ folder_colors={
 "res://src/": "green"
 }
 
+[physics]
+
+2d/default_gravity=0.0
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
